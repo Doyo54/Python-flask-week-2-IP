@@ -1,4 +1,3 @@
-from unicodedata import name
 import urllib.request,json
 from .models import News,Source
 import datetime

@@ -18,11 +18,11 @@ def news():
 
         if get_news_response['articles']:
             news_results_list = get_news_response['articles']
-            news_results = process_results(news_results_list)
+            news_results = process_news(news_results_list)
 
 
     return news_results
-def process_results(news_list):
+def process_news(news_list):
     '''
     Function  that processes the news result and transform them to a list of Objects
 
@@ -60,7 +60,7 @@ def news_source():
 
         if get_news_response['sources']:
             news_results_list = get_news_response['sources']
-            news_results = process_results(news_results_list)
+            news_results = process_source(news_results_list)
 
 
     return news_results

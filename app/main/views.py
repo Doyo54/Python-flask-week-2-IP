@@ -21,7 +21,7 @@ def index():
 def source():
 
     '''
-    View root page function that returns the index page and its data
+    View root page function that returns the source page and its data
     '''
     source = news_source()
     return render_template('source.html', source = source)

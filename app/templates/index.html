@@ -1,1 +1,4 @@
-<h1>Hi</h1>
+{% for news in news %}
+<li>{{news.content}}</li>
+<li>{{news.author}}</li>
+{% endfor %}

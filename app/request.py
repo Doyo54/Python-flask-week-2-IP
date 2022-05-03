@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 
 base_url = 'https://newsapi.org/v2/everything?domains={}&apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
 sources_url = 'https://newsapi.org/v2/top-headlines/sources?apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
+search_url = 'https://newsapi.org/v2/everything?q={}&apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
 def news():
     '''
     Function that gets the json response to our url request
@@ -87,3 +88,20 @@ def process_source(news_list):
         news_results.append(news_object)
 
     return news_results
+def search(name):
+    '''
+    Function that gets the json response to our url request
+    '''
+    searched = search_url.format(name)
+    with urllib.request.urlopen(searched) as url:
+       search_news_data = url.read()
+       search_news_response = json.loads(search_news_data)
+
+       search_news_results = None
+
+       if search_news_response['articles']:
+            search_news_list = search_news_response['articles']
+            search_news_results = process_news(search_news_list)
+
+
+    return search_news_results    

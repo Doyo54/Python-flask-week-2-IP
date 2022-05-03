@@ -5,3 +5,10 @@ class News:
         self.img =img
         self.date =date
         self.url =url
+
+class Source:
+    def __init__(self,name,description,country,url):
+        self.name =name
+        self.description =description
+        self.country = country
+        self.url =url

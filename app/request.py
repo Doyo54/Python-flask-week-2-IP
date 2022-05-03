@@ -1,5 +1,7 @@
 import urllib.request,json
 from .models import News
+import datetime
+from datetime import datetime, timezone
 
 base_url = 'https://newsapi.org/v2/everything?q=Apple&from=2022-05-03&sortBy=popularity&apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
 def news():
@@ -21,20 +23,26 @@ def news():
     return news_results
 def process_results(news_list):
     '''
-    Function  that processes the movie result and transform them to a list of Objects
+    Function  that processes the news result and transform them to a list of Objects
 
     Args:
-        movie_list: A list of dictionaries that contain movie details
+        news_list: A list of dictionaries that contain news details
 
     Returns :
-        movie_results: A list of movie objects
+        news_results: A list of news objects
     '''
     news_results = []
     for news_item in news_list:
         content = news_item.get('content')
         author = news_item.get('author')
+        img = news_item.get('urlToImage')
+        publishedAt= news_item.get('publishedAt')
+        pub =  datetime.fromisoformat(publishedAt[:-1]).astimezone(timezone.utc)
+        date = datetime.strftime(pub,"%x")  
+        url = news_item.get('url')
 
-        news_object = News(content,author)
+
+        news_object = News(content,author,img,date, url)
         news_results.append(news_object)
 
     return news_results

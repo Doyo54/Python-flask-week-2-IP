@@ -1,7 +1,23 @@
 {% extends 'base.html'%}
 {% block content %}
-{% for news in news %}
-<li>{{news.content}}</li>
-<li>{{news.author}}</li>
+<div class="container-fluid landing">
+    <div class="row">
+    {% for news in news %}
+    <div class="col-md-3 d-flex justify-content-center">
+    <div class="card">
+    <img class="card-img image-fluid" src={{news.img}} alt="Card image cap">
+    <div class="card-body">
+        <a href={{news.url}} style="text-decoration: none; color: black;">
+      <h5 class="card-title" style="text-decoration: none;">{{news.content}}</h5>
+      </a>
+      <p class="card-text">Author: {{news.author}}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Created at: {{news.date}}</small>
+    </div>
+  </div>
+    </div>
 {% endfor %}
+    </div>
+</div>
 {% endblock %}

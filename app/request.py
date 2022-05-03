@@ -1,5 +1,6 @@
+from unicodedata import name
 import urllib.request,json
-from .models import News
+from .models import News,Source
 import datetime
 from datetime import datetime, timezone
 
@@ -65,5 +66,25 @@ def news_source():
 
     return news_results
 
+def process_source(news_list):
+    '''
+    Function  that processes the news sources result and transform them to a list of Objects
 
- 
+    Args:
+        news_list: A list of dictionaries that contain news details
+
+    Returns :
+        news_results: A list of news objects
+    '''
+    news_results = []
+    for news_item in news_list:
+        name = news_item.get('name')
+        description =news_item.get('description')
+        country = news_item.get('country')
+        url = news_item.get('url')
+
+
+        news_object = Source(name,description,country, url)
+        news_results.append(news_object)
+
+    return news_results

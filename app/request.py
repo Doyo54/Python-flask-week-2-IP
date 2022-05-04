@@ -10,7 +10,7 @@ def news():
     '''
     Function that gets the json response to our url request
     '''
-    get_base_url =base_url.format('bbc.co.uk')
+    get_base_url =base_url.format('aljazeera.com,bbc.co.uk,us.cnn.com,techcrunch.com,engadget.com')
     with urllib.request.urlopen(get_base_url) as url:
         get_news_data = url.read()
         get_news_response = json.loads(get_news_data)

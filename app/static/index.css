@@ -1,6 +1,7 @@
 body{
 margin: 0;
 background-color: lightyellow;
+font-family: 'Mukta', sans-serif;
 }
 .card{
     margin: 10;
@@ -9,5 +10,7 @@ background-color: lightyellow;
     background-color: black;
     color: white;
     font-size: larger;
-
+}
+h3{
+    font-size: 20px;
 }

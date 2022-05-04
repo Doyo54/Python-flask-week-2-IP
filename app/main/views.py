@@ -55,7 +55,7 @@ def source():
 
 @app.route('/search/<name>')
 def search_news(name):
-    title = f'search results for {name}'
+    title = f'Search results for {name}'
     search_name_list = name.split(" ")
     search_name_format = "+".join(search_name_list)
     searched_news = search(search_name_format)

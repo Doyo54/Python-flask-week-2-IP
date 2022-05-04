@@ -1,0 +1,13 @@
+body{
+margin: 0;
+background-color: lightyellow;
+}
+.card{
+    margin: 10;
+}
+.card .card-body{
+    background-color: black;
+    color: white;
+    font-size: larger;
+
+}

@@ -3,8 +3,9 @@ from .models import News,Source
 import datetime
 from datetime import datetime, timezone
 
-base_url = 'https://newsapi.org/v2/everything?domains={}&apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
-sources_url = 'https://newsapi.org/v2/top-headlines/sources?apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
+base_url = 'https://newsapi.org/v2/everything?domains={}&pageSize=80&apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
+sources_url = 'https://newsapi.org/v2/top-headlines/sources?&apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
+source_url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
 search_url = 'https://newsapi.org/v2/everything?q={}&apiKey=f571903dfdd44dc9b15e9e68d3cc9e88'
 def news():
     '''
@@ -12,6 +13,24 @@ def news():
     '''
     get_base_url =base_url.format('aljazeera.com,bbc.co.uk,us.cnn.com,techcrunch.com,engadget.com')
     with urllib.request.urlopen(get_base_url) as url:
+        get_news_data = url.read()
+        get_news_response = json.loads(get_news_data)
+
+        news_results = None
+
+        if get_news_response['articles']:
+            news_results_list = get_news_response['articles']
+            news_results = process_news(news_results_list)
+
+
+    return news_results
+
+def specific_source(source):
+    '''
+    Function that gets the json response to our url request
+    '''
+    url = source_url.format(source)
+    with urllib.request.urlopen(url) as url:
         get_news_data = url.read()
         get_news_response = json.loads(get_news_data)
 
@@ -52,7 +71,7 @@ def news_source():
     '''
     Function that gets the json response to our url request
     '''
-   
+    
     with urllib.request.urlopen(sources_url) as url:
         get_news_data = url.read()
         get_news_response = json.loads(get_news_data)
@@ -65,6 +84,7 @@ def news_source():
 
 
     return news_results
+
 
 def process_source(news_list):
     '''

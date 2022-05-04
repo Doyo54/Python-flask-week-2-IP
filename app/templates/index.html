@@ -1,18 +1,24 @@
 {% extends 'base.html'%}
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">
+{% endblock %}
 {% block content %}
+<h1 style="text-align: center; font-size: 50px;">Latest <span style="color: green;">News</span></h1>
 <form class="navbar-form navbar-left">
     <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="name">
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
+
 <div class="container-fluid landing">
     <div class="row">
     {% for news in news %}
-    <div class="col-md-3 d-flex justify-content-center">
+    <div class="col-md-4 d-flex justify-content-center">
     <div class="card">
     <img class="card-img image-fluid" src={{news.img}} alt="Card image cap">
     <div class="card-body">
-        <a href={{news.url}} style="text-decoration: none; color: black;">
-      <h5 class="card-title" style="text-decoration: none;">{{news.content}}</h5>
+        <a href={{news.url}} style="text-decoration: none; color: white;">
+      <h3 class="card-title" style="text-decoration: none;">{{news.content}}</h3>
       </a>
       <p class="card-text">Author: {{news.author}}</p>
     </div>
